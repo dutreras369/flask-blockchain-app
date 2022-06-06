@@ -1,0 +1,29 @@
+Librerías necesarias para la creación de una Blockchain con Python:
+
+datetime: El módulo datetime proporciona clases para manipular fechas y horas. Si bien la implementación permite operaciones aritméticas con fechas y horas, su principal objetivo es poder extraer campos de forma eficiente para su posterior manipulación o formateo.
+
+hashlib: Este módulo implementa una interfaz común a diferentes algoritmos de hash y resúmenes de mensajes seguros. Están incluidos los algoritmos de hash FIPS seguros SHA1, SHA224, SHA226, SHA384 y SHA512 (definidos en FIPS 180-2) además del algoritmo MD5 de RSA (definido en Internet RFC 1321). Los términos «hash seguro» y «resumen de mensaje» son intercambiables. Los algoritmos más antiguos fueron denominados resúmenes de mensajes. El término moderno es hash seguro.
+
+json: JSON son las siglas de JavaScript Object Notation. JSON es un formato de datos ligero que se utiliza para el intercambio de datos entre varios lenguajes diferentes. Es fácil de leer para los humanos y fácilmente analizado por las máquinas.
+
+flask: Flask es un micro framework web escrito en Python. Se clasifica como un microframework porque no requiere herramientas o librerías particulares. No tiene capa de abstracción de base de datos, validación de formularios, o cualquier otro componente donde las librerías de terceros preexistentes proporcionan funciones comunes. Sin embargo, Flask admite extensiones que pueden añadir funciones a la aplicación como si estuvieran implementadas en el propio Flask. Existen extensiones para mapeadores objeto-relacionales, validación de formularios, manejo de cargas, varias tecnologías de autenticación abierta y varias herramientas relacionadas con el marco común.
+
+flask-ngrok: Una forma sencilla de hacer demostraciones de aplicaciones Flask desde tu máquina. Hace que sus aplicaciones Flask que se ejecutan en localhost estén disponibles en Internet a través de la excelente herramienta ngrok.
+
+
+Creación de una clase Blockchain que contenga todos los métodos esenciales, como son los siguientes:
+
+Creación de un nuevo bloque
+Obtención del hash de un bloque
+Protocolo de concenso Proof of Work (PoW)
+Generación del hash de un bloque
+Verificación de la validez de la Blockchain
+
+
+Aplicación Web accesible vía en modo de REST API. Mediante llamadas HTTP al REST API podemos establecer uan comunicación con el uso del módulo de Flask.
+
+Llamadas a realizar vía REST API:
+
+Minación de bloques: mine_block()
+Obtención de la Blockchain: get_chain()
+Comprobar estado de la Blockchain: is_valid()
