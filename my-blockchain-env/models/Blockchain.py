@@ -1,22 +1,25 @@
 import json
 import datetime
 import hashlib
+from urllib.parse import urlparse
+import requests 
 
 # Creación de la Blockchain
-class Blockchain():
+class Blockchain:
     
   def __init__(self):
-    """ Constructor de la clase Blockchain. """
+    """ Constructor de la clase. """
 
     self.chain = []
+    self.transactions = []
     self.create_block(proof = 1, previous_hash = '0')
+    self.nodes = set()
       
-  
   def create_block(self, proof, previous_hash):
     """ Creación de un nuevo bloque. 
 
       Arguments:
-        - proof: Nounce del bloque actual. (proof != hash)
+        - proof: Nounce del bloque actual.
         - previous_hash: Hash del bloque previo.
 
       Returns: 
@@ -26,19 +29,21 @@ class Blockchain():
     block = { 'index'         : len(self.chain)+1,
               'timestamp'     : str(datetime.datetime.now()),
               'proof'         : proof,
-              'previous_hash' : previous_hash}
+              'previous_hash' : previous_hash,
+              'transactions'  : self.transactions}
+    self.transactions = []
     self.chain.append(block)
     return block
 
   def get_previous_block(self):
-    """ Obtención del bloque previo de la Blockchain .
+    """ Obtención del bloque previo de la Blockchain.
     
       Returns:
         - Obtención del último bloque de la Blockchain. """
 
     return self.chain[-1]
   
-  def proof_of_work(self, previous_proof):
+  def proof_of_work(self, previous_proof):     
     """ Protocolo de concenso Proof of Work (PoW).
     
       Arguments:
@@ -77,10 +82,14 @@ class Blockchain():
         - chain: Cadena de bloques que contiene toda la 
                   información de las transacciones.
     
-    Returns:
+    Returns:actions.append({'sender'  : sender,
+                              'receiver': receiver, 
+…        self.chain = longest_chain
+        return True
+    return False
         - True/False: Devuelve un booleano en función de la validez de la 
                       Blockchain. (True = Válida, False = Inválida) """
-
+                      
     previous_block = chain[0]
     block_index = 1
     while block_index < len(chain):
@@ -95,3 +104,51 @@ class Blockchain():
         previous_block = block
         block_index += 1
     return True
+  
+  def add_transaction(self, sender, receiver, amount):
+    """ Realización de una transacción.
+    
+    Arguments:
+        - sender: Persona que hace la transacción
+        - receiver: Persona que recibe la transacción
+        - amount: Cantidad de criptomonedas enviadas
+
+    Returns: 
+        - Devolución del índice superior al último bloque
+    """
+
+    self.transactions.append({'sender'  : sender,
+                              'receiver': receiver, 
+                              'amount'  : amount})
+    previous_block = self.get_previous_block()
+    return previous_block['index'] + 1
+
+  def add_node(self, address):
+    """ Nuevo nodo en la Blockchain.
+    
+      Arguments:
+        - address: Dirección del nuevo nodo
+    """
+
+    parsed_url = urlparse(address)
+    self.nodes.add(parsed_url.netloc)
+  
+  def replace_chain(self):
+    """ Remplazo de la cadena por la cadena más larga, 
+    siempre y cuando sea válida. """
+    
+    network = self.nodes
+    longest_chain = None
+    max_length = len(self.chain)
+    for node in network:
+        response = requests.get(f'http://{node}/get_chain')
+        if response.status_code == 200:
+            length = response.json()['length']
+            chain = response.json()['chain']
+            if length > max_length and self.is_chain_valid(chain):
+                max_length = length
+                longest_chain = chain
+    if longest_chain: 
+        self.chain = longest_chain
+        return True
+    return False

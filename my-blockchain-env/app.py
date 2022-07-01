@@ -2,24 +2,21 @@
 import os
 from flask import Flask, render_template
 from flask_migrate import Migrate
-from flask_ngrok import run_with_ngrok
-import os
 
+from routes.front_bp import front
+from routes.blockchain_bp import blockchain_bp
 
 # app create
-app = Flask(__name__)
+app = Flask(__name__, template_folder="views")
 
-# execute from notebook
 migrate = Migrate(app)
 
-run_with_ngrok(app)  
+# register routes
+app.register_blueprint(front)
+app.register_blueprint(blockchain_bp)
 
 # error 500, actualized and execute whit this line
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 if __name__ == '__main__':
     app.debug = True

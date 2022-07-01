@@ -8,22 +8,8 @@ json: JSON son las siglas de JavaScript Object Notation. JSON es un formato de d
 
 flask: Flask es un micro framework web escrito en Python. Se clasifica como un microframework porque no requiere herramientas o librerías particulares. No tiene capa de abstracción de base de datos, validación de formularios, o cualquier otro componente donde las librerías de terceros preexistentes proporcionan funciones comunes. Sin embargo, Flask admite extensiones que pueden añadir funciones a la aplicación como si estuvieran implementadas en el propio Flask. Existen extensiones para mapeadores objeto-relacionales, validación de formularios, manejo de cargas, varias tecnologías de autenticación abierta y varias herramientas relacionadas con el marco común.
 
-flask-ngrok: Una forma sencilla de hacer demostraciones de aplicaciones Flask desde tu máquina. Hace que sus aplicaciones Flask que se ejecutan en localhost estén disponibles en Internet a través de la excelente herramienta ngrok.
+requests: Requests es una biblioteca HTTP para el lenguaje de programación Python. El objetivo del proyecto es hacer que las solicitudes HTTP sean más simples y amigables para los humanos. La versión actual es 2.26.0. Las solicitudes se publican bajo la licencia Apache 2.0.
 
+uuid: Este módulo proporciona objetos UUID inmutables (la clase UUID) y las funciones uuid1(), uuid3(), uuid4(), uuid5() para generar UUIDs de las versiones 1, 3, 4 y 5 como se especifica en el RFC 4122. Si lo único que quieres es un ID único, probablemente debas llamar a uuid1() o a uuid4(). Ten en cuenta que uuid1() puede comprometer la privacidad, ya que crea un UUID que contiene la dirección de red del ordenador. uuid4() crea un UUID aleatorio.
 
-Creación de una clase Blockchain que contenga todos los métodos esenciales, como son los siguientes:
-
-Creación de un nuevo bloque
-Obtención del hash de un bloque
-Protocolo de concenso Proof of Work (PoW)
-Generación del hash de un bloque
-Verificación de la validez de la Blockchain
-
-
-Aplicación Web accesible vía en modo de REST API. Mediante llamadas HTTP al REST API podemos establecer uan comunicación con el uso del módulo de Flask.
-
-Llamadas a realizar vía REST API:
-
-Minación de bloques: mine_block()
-Obtención de la Blockchain: get_chain()
-Comprobar estado de la Blockchain: is_valid()
+urllib.parse: Este módulo define una interfaz estándar para dividir las cadenas de localizadores uniformes de recursos (URL) en componentes (esquema de direccionamiento, ubicación en la red, ruta, etc.), para volver a combinar los componentes en una cadena de URL, y para convertir una "URL relativa" en una URL absoluta dada una "URL base". El módulo ha sido diseñado para ajustarse a la RFC de Internet sobre Localizadores Uniformes de Recursos Relativos. Admite los siguientes esquemas de URL: file, ftp, gopher, hdl, http, https, imap, mailto, mms, news, nntp, prospero, rsync, rtsp, rtspu, sftp, shttp, sip, sips, snews, svn, svn+ssh, telnet, wais, ws, wss.
